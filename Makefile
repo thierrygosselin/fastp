@@ -72,6 +72,7 @@ clean:
 	@rm -f $(TARGET)
 
 install:
+	mkdir -p $(BINDIR)
 	install $(TARGET) $(BINDIR)/$(TARGET)
 	@echo "Installed."
 
