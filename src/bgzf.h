@@ -147,7 +147,9 @@ private:
 
             if (bsize == 28) {
                 uint32_t isize = s.comp[24]|(s.comp[25]<<8)|(s.comp[26]<<16)|(s.comp[27]<<24);
-                if (isize == 0) { markDone(s); break; }
+                // An embedded BGZF EOF marker is just an empty block. It can
+                // appear when valid BGZF files are concatenated.
+                if (isize == 0) continue;
             }
 
             s.compLen = bsize;
